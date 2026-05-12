@@ -1,82 +1,218 @@
-<svg>
-    <!DOCTYPE html>
-<html>
-<head>
-<style>
-  .ce, .ct, .lb, .win { display: none; font-family: 'Courier New', Courier, monospace; text-align: center; }
-  
-  /* Logic Engine */
-  #c0:checked ~ .ct0, #c0:checked ~ .lb1 { display: block; }
-  
-  #c1:checked ~ .ct0, #c1:checked ~ .lb1 { display: none !important; }
-  #c1:checked ~ .ct1, #c1:checked ~ .lb2 { display: block !important; }
-  #c2:checked ~ .ct1, #c2:checked ~ .lb2 { display: none !important; }
-  #c2:checked ~ .ct2, #c2:checked ~ .lb3 { display: block !important; }
-  #c3:checked ~ .ct2, #c3:checked ~ .lb3 { display: none !important; }
-  #c3:checked ~ .ct3, #c3:checked ~ .lb4 { display: block !important; }
-  #c4:checked ~ .ct3, #c4:checked ~ .lb4 { display: none !important; }
-  #c4:checked ~ .ct4, #c4:checked ~ .lb5 { display: block !important; }
-  #c5:checked ~ .ct4, #c5:checked ~ .lb5 { display: none !important; }
-  #c5:checked ~ .ct5, #c5:checked ~ .lb6 { display: block !important; }
-  #c6:checked ~ .ct5, #c6:checked ~ .lb6 { display: none !important; }
-  #c6:checked ~ .ct6, #c6:checked ~ .lb7 { display: block !important; }
-  #c7:checked ~ .ct6, #c7:checked ~ .lb7 { display: none !important; }
-  #c7:checked ~ .ct7, #c7:checked ~ .lb8 { display: block !important; }
-  #c8:checked ~ .ct7, #c8:checked ~ .lb8 { display: none !important; }
-  #c8:checked ~ .ct8, #c8:checked ~ .lb9 { display: block !important; }
-  #c9:checked ~ .ct8, #c9:checked ~ .lb9 { display: none !important; }
-  #c9:checked ~ .ct9, #c9:checked ~ .lb10 { display: block !important; }
-  #c10:checked ~ .ct9, #c10:checked ~ .lb10 { display: none !important; }
-  #c10:checked ~ .ct10, #c10:checked ~ .lb11 { display: block !important; }
-  #c11:checked ~ .ct10, #c11:checked ~ .lb11 { display: none !important; }
-  #c11:checked ~ .ct11, #c11:checked ~ .lb12 { display: block !important; }
-  #c12:checked ~ .ct11, #c12:checked ~ .lb12 { display: none !important; }
-  #c12:checked ~ .ct12, #c12:checked ~ .lb13 { display: block !important; }
-  #c13:checked ~ .ct12, #c13:checked ~ .lb13 { display: none !important; }
-  #c13:checked ~ .ct13, #c13:checked ~ .lb14 { display: block !important; }
-  #c14:checked ~ .ct13, #c14:checked ~ .lb14 { display: none !important; }
-  #c14:checked ~ .ct14, #c14:checked ~ .lb15 { display: block !important; }
-  #c15:checked ~ .ct14, #c15:checked ~ .lb15 { display: none !important; }
-  #c15:checked ~ .ct15, #c15:checked ~ .lb16 { display: block !important; }
-  #c16:checked ~ .ct15, #c16:checked ~ .lb16 { display: none !important; }
-  #c16:checked ~ .ct16, #c16:checked ~ .lb17 { display: block !important; }
-  #c17:checked ~ .ct16, #c17:checked ~ .lb17 { display: none !important; }
-  #c17:checked ~ .ct17, #c17:checked ~ .lb18 { display: block !important; }
-  #c18:checked ~ .ct17, #c18:checked ~ .lb18 { display: none !important; }
-  #c18:checked ~ .ct18, #c18:checked ~ .lb19 { display: block !important; }
-  #c19:checked ~ .ct18, #c19:checked ~ .lb19 { display: none !important; }
-  #c19:checked ~ .ct19, #c19:checked ~ .lb20 { display: block !important; }
-  #c20:checked ~ .ct19, #c20:checked ~ .lb20 { display: none !important; }
-  #c20:checked ~ .ct20, #c20:checked ~ .lb21 { display: block !important; }
-  #c21:checked ~ .ct20, #c21:checked ~ .lb21 { display: none !important; }
-  #c21:checked ~ .ct21, #c21:checked ~ .lb22 { display: block !important; }
-  #c22:checked ~ .ct21, #c22:checked ~ .lb22 { display: none !important; }
-  #c22:checked ~ .ct22, #c22:checked ~ .lb23 { display: block !important; }
-  #c23:checked ~ .ct22, #c23:checked ~ .lb23 { display: none !important; }
-  #c23:checked ~ .ct23, #c23:checked ~ .lb24 { display: block !important; }
-  #c24:checked ~ .ct23, #c24:checked ~ .lb24 { display: none !important; }
-  #c24:checked ~ .ct24, #c24:checked ~ .lb25 { display: block !important; }
-  #c25:checked ~ .ct24, #c25:checked ~ .lb25 { display: none !important; }
-  #c25:checked ~ .ct25, #c25:checked ~ .win { display: block !important; }
+<svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; font-weight: bold; user-select: none; pointer-events: none; }
+    .btn { cursor: pointer; transition: fill 0.2s; }
+    .btn:hover { fill: #c2185b; }
+    .count { font-size: 60px; fill: #333; }
+  </style>
 
-  /* Styling */
-  .lb { padding: 15px; background: #e91e63; color: #fff; border-radius: 50px; width: 80px; margin: 20px auto; cursor: pointer; font-weight: bold; }
-  .ct { font-size: 32px; color: #333; margin: 20px; }
-  .win { background: #4caf50; color: white; padding: 30px; border-radius: 10px; font-size: 24px; }
-</style>
-</head>
-<body>
-  <div style="max-width: 300px; margin: auto; padding: 20px; border: 4px double #e91e63;">
-    <h3>Clicker 25</h3>
-    
-    <input type="checkbox" id="c0" class="ce" checked><input type="checkbox" id="c1" class="ce"><input type="checkbox" id="c2" class="ce"><input type="checkbox" id="c3" class="ce"><input type="checkbox" id="c4" class="ce"><input type="checkbox" id="c5" class="ce"><input type="checkbox" id="c6" class="ce"><input type="checkbox" id="c7" class="ce"><input type="checkbox" id="c8" class="ce"><input type="checkbox" id="c9" class="ce"><input type="checkbox" id="c10" class="ce"><input type="checkbox" id="c11" class="ce"><input type="checkbox" id="c12" class="ce"><input type="checkbox" id="c13" class="ce"><input type="checkbox" id="c14" class="ce"><input type="checkbox" id="c15" class="ce"><input type="checkbox" id="c16" class="ce"><input type="checkbox" id="c17" class="ce"><input type="checkbox" id="c18" class="ce"><input type="checkbox" id="c19" class="ce"><input type="checkbox" id="c20" class="ce"><input type="checkbox" id="c21" class="ce"><input type="checkbox" id="c22" class="ce"><input type="checkbox" id="c23" class="ce"><input type="checkbox" id="c24" class="ce"><input type="checkbox" id="c25" class="ce">
+  <rect width="100%" height="100%" fill="#ffffff" />
+  <rect x="50" y="20" width="300" height="210" rx="20" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2" />
 
-    <div class="ct ct0">0</div><div class="ct ct1">1</div><div class="ct ct2">2</div><div class="ct ct3">3</div><div class="ct ct4">4</div><div class="ct ct5">5</div><div class="ct ct6">6</div><div class="ct ct7">7</div><div class="ct ct8">8</div><div class="ct ct9">9</div><div class="ct ct10">10</div><div class="ct ct11">11</div><div class="ct ct12">12</div><div class="ct ct13">13</div><div class="ct ct14">14</div><div class="ct ct15">15</div><div class="ct ct16">16</div><div class="ct ct17">17</div><div class="ct ct18">18</div><div class="ct ct19">19</div><div class="ct ct20">20</div><div class="ct ct21">21</div><div class="ct ct22">22</div><div class="ct ct23">23</div><div class="ct ct24">24</div><div class="ct ct25">25</div>
+  <g id="s0">
+    <text x="200" y="100" text-anchor="middle" class="count">0</text>
+    <rect id="b1" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b1.click" fill="freeze" />
+  </g>
 
-    <label for="c1" class="lb lb1">GO</label><label for="c2" class="lb lb2">GO</label><label for="c3" class="lb lb3">GO</label><label for="c4" class="lb lb4">GO</label><label for="c5" class="lb lb5">GO</label><label for="c6" class="lb lb6">GO</label><label for="c7" class="lb lb7">GO</label><label for="c8" class="lb lb8">GO</label><label for="c9" class="lb lb9">GO</label><label for="c10" class="lb lb10">GO</label><label for="c11" class="lb lb11">GO</label><label for="c12" class="lb lb12">GO</label><label for="c13" class="lb lb13">GO</label><label for="c14" class="lb lb14">GO</label><label for="c15" class="lb lb15">GO</label><label for="c16" class="lb lb16">GO</label><label for="c17" class="lb lb17">GO</label><label for="c18" class="lb lb18">GO</label><label for="c19" class="lb lb19">GO</label><label for="c20" class="lb lb20">GO</label><label for="c21" class="lb lb21">GO</label><label for="c22" class="lb lb22">GO</label><label for="c23" class="lb lb23">GO</label><label for="c24" class="lb lb24">GO</label><label for="c25" class="lb lb25">GO</label>
+  <g id="s1" display="none">
+    <set attributeName="display" to="block" begin="b1.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">1</text>
+    <rect id="b2" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b2.click" fill="freeze" />
+  </g>
 
-    <div class="win">✨ FINISHED ✨</div>
-  </div>
-</body>
-</html>
+  <g id="s2" display="none">
+    <set attributeName="display" to="block" begin="b2.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">2</text>
+    <rect id="b3" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b3.click" fill="freeze" />
+  </g>
+
+  <g id="s3" display="none">
+    <set attributeName="display" to="block" begin="b3.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">3</text>
+    <rect id="b4" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b4.click" fill="freeze" />
+  </g>
+
+  <g id="s4" display="none">
+    <set attributeName="display" to="block" begin="b4.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">4</text>
+    <rect id="b5" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b5.click" fill="freeze" />
+  </g>
+
+  <g id="s5" display="none">
+    <set attributeName="display" to="block" begin="b5.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">5</text>
+    <rect id="b6" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b6.click" fill="freeze" />
+  </g>
+
+  <g id="s6" display="none">
+    <set attributeName="display" to="block" begin="b6.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">6</text>
+    <rect id="b7" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b7.click" fill="freeze" />
+  </g>
+
+  <g id="s7" display="none">
+    <set attributeName="display" to="block" begin="b7.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">7</text>
+    <rect id="b8" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b8.click" fill="freeze" />
+  </g>
+
+  <g id="s8" display="none">
+    <set attributeName="display" to="block" begin="b8.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">8</text>
+    <rect id="b9" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b9.click" fill="freeze" />
+  </g>
+
+  <g id="s9" display="none">
+    <set attributeName="display" to="block" begin="b9.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">9</text>
+    <rect id="b10" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b10.click" fill="freeze" />
+  </g>
+
+  <g id="s10" display="none">
+    <set attributeName="display" to="block" begin="b10.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">10</text>
+    <rect id="b11" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b11.click" fill="freeze" />
+  </g>
+
+  <g id="s11" display="none">
+    <set attributeName="display" to="block" begin="b11.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">11</text>
+    <rect id="b12" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b12.click" fill="freeze" />
+  </g>
+
+  <g id="s12" display="none">
+    <set attributeName="display" to="block" begin="b12.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">12</text>
+    <rect id="b13" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b13.click" fill="freeze" />
+  </g>
+
+  <g id="s13" display="none">
+    <set attributeName="display" to="block" begin="b13.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">13</text>
+    <rect id="b14" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b14.click" fill="freeze" />
+  </g>
+
+  <g id="s14" display="none">
+    <set attributeName="display" to="block" begin="b14.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">14</text>
+    <rect id="b15" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b15.click" fill="freeze" />
+  </g>
+
+  <g id="s15" display="none">
+    <set attributeName="display" to="block" begin="b15.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">15</text>
+    <rect id="b16" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b16.click" fill="freeze" />
+  </g>
+
+  <g id="s16" display="none">
+    <set attributeName="display" to="block" begin="b16.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">16</text>
+    <rect id="b17" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b17.click" fill="freeze" />
+  </g>
+
+  <g id="s17" display="none">
+    <set attributeName="display" to="block" begin="b17.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">17</text>
+    <rect id="b18" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b18.click" fill="freeze" />
+  </g>
+
+  <g id="s18" display="none">
+    <set attributeName="display" to="block" begin="b18.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">18</text>
+    <rect id="b19" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b19.click" fill="freeze" />
+  </g>
+
+  <g id="s19" display="none">
+    <set attributeName="display" to="block" begin="b19.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">19</text>
+    <rect id="b20" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b20.click" fill="freeze" />
+  </g>
+
+  <g id="s20" display="none">
+    <set attributeName="display" to="block" begin="b20.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">20</text>
+    <rect id="b21" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b21.click" fill="freeze" />
+  </g>
+
+  <g id="s21" display="none">
+    <set attributeName="display" to="block" begin="b21.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">21</text>
+    <rect id="b22" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b22.click" fill="freeze" />
+  </g>
+
+  <g id="s22" display="none">
+    <set attributeName="display" to="block" begin="b22.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">22</text>
+    <rect id="b23" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b23.click" fill="freeze" />
+  </g>
+
+  <g id="s23" display="none">
+    <set attributeName="display" to="block" begin="b23.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">23</text>
+    <rect id="b24" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">CLICK</text>
+    <set attributeName="display" to="none" begin="b24.click" fill="freeze" />
+  </g>
+
+  <g id="s24" display="none">
+    <set attributeName="display" to="block" begin="b24.click" fill="freeze" />
+    <text x="200" y="100" text-anchor="middle" class="count">24</text>
+    <rect id="b25" x="140" y="140" width="120" height="50" rx="25" fill="#e91e63" class="btn" />
+    <text x="200" y="172" fill="white" text-anchor="middle" font-size="16">FINAL</text>
+    <set attributeName="display" to="none" begin="b25.click" fill="freeze" />
+  </g>
+
+  <g id="win" display="none">
+    <set attributeName="display" to="block" begin="b25.click" fill="freeze" />
+    <rect x="50" y="20" width="300" height="210" rx="20" fill="#4caf50" />
+    <text x="200" y="110" fill="white" text-anchor="middle" font-size="30">YOU WIN!</text>
+    <text x="200" y="150" fill="white" text-anchor="middle" font-size="60">25</text>
+  </g>
+
 </svg>
