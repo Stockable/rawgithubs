@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml" width="100%" height="100%" viewBox="0 0 800 600">
+  <foreignObject width="100%" height="100%">
+    <xhtml:div style="height: 100%; margin: 0; padding: 0;">
+      <xhtml:style>
+        body {
+          margin: 0;
+          background: radial-gradient(circle, #2c3e50, #000);
+          color: white;
+          font-family: sans-serif;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          user-select: none;
+        }
+        #score-display { font-size: 48px; font-weight: bold; margin-bottom: 20px; color: #f1c40f; }
+        #cookie {
+          font-size: 100px;
+          cursor: pointer;
+          transition: transform 0.1s;
+          display: inline-block;
+        }
+        #cookie:active { transform: scale(0.9); }
+        .upgrade-btn {
+          margin-top: 20px;
+          background: #27ae60;
+          border: none;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        .upgrade-btn:disabled { background: #7f8c8d; }
+      </xhtml:style>
+
+      <xhtml:body>
+        <xhtml:div id="score-display">0</xhtml:div>
+        <xhtml:div id="cookie">🍪</xhtml:div>
+        <xhtml:button id="buy-auto" class="upgrade-btn">Buy Auto (Cost: 10)</xhtml:button>
+        <xhtml:div style="margin-top:10px; opacity:0.7">CPS: <xhtml:span id="cps-display">0</xhtml:span></xhtml:div>
+
+        <xhtml:script>
+        //<![CDATA[
+          let score = 0;
+          let cps = 0;
+          let cost = 10;
+
+          const scoreEl = document.getElementById('score-display');
+          const cookieEl = document.getElementById('cookie');
+          const btn = document.getElementById('buy-auto');
+          const cpsEl = document.getElementById('cps-display');
+
+          cookieEl.onclick = () => {
+            score++;
+            update();
+          };
+
+          btn.onclick = () => {
+            if (score >= cost) {
+              score -= cost;
+              cps++;
+              cost = Math.floor(cost * 1.5);
+              update();
+            }
+          };
+
+          setInterval(() => {
+            if (cps > 0) {
+              score += cps;
+              update();
+            }
+          }, 1000);
+
+          function update() {
+            scoreEl.textContent = Math.floor(score);
+            cpsEl.textContent = cps;
+            btn.textContent = `Buy Auto (Cost: ${cost})`;
+            btn.disabled = score < cost;
+          }
+        //]]>
+        </xhtml:script>
+      </xhtml:body>
+    </xhtml:div>
+  </foreignObject>
+</svg>
