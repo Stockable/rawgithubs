@@ -1,60 +1,121 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml" width="100%" height="100%" viewBox="0 0 1920 1080">
-  <foreignObject id="fo" width="1920" height="1080" x="0" y="0">
-    <xhtml:html xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;margin:0;padding:0;">
-    <head>
-      <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
-        iframe { position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-      </style>
-      <script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521219086088837" crossorigin="anonymous"></script>
-    </head>
-    <body>
-      <div id="content-area"></div>
-      <script>
-      //<![CDATA[
-        (function() {
-          // Adjust SVG sizing on load and resize
-          function size() {
-            var w = window.innerWidth, h = window.innerHeight;
-            var svg = document.querySelector('svg');
-            var fo  = document.querySelector('foreignObject');
-            if (svg) { svg.setAttribute('width', w); svg.setAttribute('height', h); svg.setAttribute('viewBox','0 0 '+w+' '+h); }
-            if (fo)  { fo.setAttribute('width', w);  fo.setAttribute('height', h); }
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 600">
+  <foreignObject width="100%" height="100%">
+    <xhtml:html xmlns="http://www.xhtml.org/1999/xhtml">
+      <head>
+        <style>
+          body {
+            margin: 0;
+            background: radial-gradient(circle, #2c3e50, #000);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            user-select: none;
           }
-          size();
-          window.addEventListener('resize', size);
+          #game-container { text-align: center; }
+          #score-display { font-size: 48px; font-weight: bold; margin-bottom: 20px; color: #f1c40f; }
+          
+          /* The Clicker */
+          #cookie {
+            width: 200px;
+            height: 200px;
+            background: #e67e22;
+            border-radius: 50%;
+            border: 8px solid #d35400;
+            cursor: pointer;
+            transition: transform 0.05s;
+            box-shadow: 0 10px 0 #a04000, 0 20px 30px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+          }
+          #cookie:active {
+            transform: translateY(5px) scale(0.95);
+            box-shadow: 0 5px 0 #a04000, 0 10px 20px rgba(0,0,0,0.5);
+          }
 
-          // Launch function adapted for the SVG container
-          async function launch() {
-            try {
-              const url = "https://cdn.jsdelivr.net/gh/freebuisness/freebuisness.github.io@main/singlefile.html?t=" + Date.now();
-              const response = await fetch(url);
-              const html = await response.text();
+          /* Shop Area */
+          #shop {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+          }
+          .upgrade-btn {
+            background: #27ae60;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+          }
+          .upgrade-btn:disabled { background: #7f8c8d; cursor: not-allowed; }
+          .stats { margin-top: 10px; font-size: 14px; opacity: 0.8; }
+        </style>
+      </head>
+      <body>
+        <div id="game-container">
+          <div id="score-display">0</div>
+          <div id="cookie">🍪</div>
+          
+          <div id="shop">
+            <button id="buy-auto" class="upgrade-btn">Buy Auto-Clicker (Cost: 10)</button>
+            <div class="stats">
+              CPS (Clicks Per Second): <span id="cps-display">0</span>
+            </div>
+          </div>
+        </div>
 
-              // Inject the content
-              document.body.innerHTML = html;
+        <script>
+          let score = 0;
+          let cps = 0;
+          let autoClickerCost = 10;
 
-              // Re-execute scripts found in the fetched HTML
-              document.querySelectorAll('script').forEach(oldScript => {
-                const newScript = document.createElement('script');
-                if (oldScript.src) {
-                  newScript.src = oldScript.src;
-                } else {
-                  newScript.textContent = oldScript.textContent;
-                }
-                document.body.appendChild(newScript);
-              });
-            } catch (error) {
-              console.error('Launch error:', error);
+          const scoreEl = document.getElementById('score-display');
+          const cookieEl = document.getElementById('cookie');
+          const buyAutoBtn = document.getElementById('buy-auto');
+          const cpsEl = document.getElementById('cps-display');
+
+          // Manual Click
+          cookieEl.addEventListener('click', () => {
+            score++;
+            updateDisplay();
+          });
+
+          // Buy Auto Clicker
+          buyAutoBtn.addEventListener('click', () => {
+            if (score >= autoClickerCost) {
+              score -= autoClickerCost;
+              cps++;
+              autoClickerCost = Math.floor(autoClickerCost * 1.5);
+              updateDisplay();
             }
-          }
+          });
 
-          launch();
-        })();
-      //]]>
-      </script>
-    </body>
+          // Game Loop (Auto-clicking)
+          setInterval(() => {
+            if (cps > 0) {
+              score += cps;
+              updateDisplay();
+            }
+          }, 1000);
+
+          function updateDisplay() {
+            scoreEl.textContent = Math.floor(score);
+            cpsEl.textContent = cps;
+            buyAutoBtn.textContent = `Buy Auto-Clicker (Cost: ${autoClickerCost})`;
+            buyAutoBtn.disabled = score < autoClickerCost;
+          }
+        </script>
+      </body>
     </xhtml:html>
   </foreignObject>
 </svg>
